@@ -30,10 +30,10 @@ class PreActivation(Node):
         return self.out
     # aqui el grad_out es el gradiente calculado en el nodo sigmoide (o en el nodo de activacion en general)
     def backward(self, grad_out):
-        #self.grad_weight = np.dot(self.inputs.T, grad_out)
-        self.grad_weight = grad_out * self.inputs
-        #self.grad_bias = np.sum(grad_out, axis=0)
-        self.grad_bias = grad_out
+        self.grad_weight = np.dot(self.inputs.T, grad_out) / self.inputs.shape[0]
+        #self.grad_weight = grad_out * self.inputs
+        self.grad_bias = np.mean(grad_out, axis=0)
+        #self.grad_bias = grad_out
         return self.grad_weight, self.grad_bias
     
 #---------------------------------------------------------------------------------------------------
