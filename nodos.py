@@ -76,10 +76,3 @@ class CrossEntropy(Node):
 
         self.grad = np.where(y_true == 1, -1 / y_pred, 1 / (1-y_pred))
         return self.grad
-
-        #if y_true == 1:
-        #    return -(1 / y_pred)
-        #else:
-        #    if y_true == 0:
-        #        return 1 / (1-y_pred)
-        #return self.out
